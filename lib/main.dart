@@ -17,14 +17,14 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.iniializeApp();
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == connectionState.done) {
+          if (snapshot.connectionState == ConnectionState.done) {
             return StreamBuilder<User>(
               stream:FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           }// StreamBuilder
 
           return CircularProgressIndicator();
-        })
+        });
   }
 }
 

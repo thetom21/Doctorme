@@ -8,14 +8,13 @@ import 'email_service.dart';
 class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      MaterialApp(
+    return MaterialApp(
       title: 'Dr. Soler',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ), //ThemeData
       home: LoginPage(),
-    ); //MaterialApp
+    );
   }
 }
 

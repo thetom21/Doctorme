@@ -9,7 +9,7 @@
 .history
 .svn/
 .env*
-
+/web/config.js
 # IntelliJ related
 *.iml
 *.ipr

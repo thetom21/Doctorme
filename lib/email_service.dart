@@ -18,8 +18,6 @@ EmailService(){
   mailgun = MailgunMailer(
     domain: env.mailgunDomain,
     apiKey: env.mailgunApiKey);
-    print(env.mailgunDomain);
-    print(env.mailgunApiKey);
 }
 
   Future<int> sendSignInCode(String to) async{

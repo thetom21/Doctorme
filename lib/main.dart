@@ -7,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 //le puse en nombre al el paquete para luego llmarlos mas adelante
 
 
+import 'pacientes/home_app.dart';
 import 'login.dart';
 
 
@@ -40,21 +41,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeApp extends StatelessWidget {
-  const HomeApp({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dr. Soler',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ), //ThemeData
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Citas"),
-        ), //AppBar
-      ), //Scaffold
-    ); //MaterialApp
-  }
-}

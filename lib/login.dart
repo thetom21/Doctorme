@@ -1,4 +1,3 @@
-
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -67,8 +66,8 @@ class _LoginPageState extends State<LoginPage> {
               child: TextButton(
                   onPressed: () async {
                     if (_emailForm.currentState.validate()) {
-                      var code=await widget.emailService.sendSignInCode(_emailController.text);
-                  
+                      var code=await widget.emailService
+                        .sendSignInCode(_emailController.text);
                       setState(() {
                         authCode = code;
                         print(code);
@@ -113,6 +112,8 @@ class _LoginPageState extends State<LoginPage> {
               child: TextButton(
                   onPressed: () async {
                     if (_codeForm.currentState.validate()) {
+                      // Se busca que cuando una persona intente crearse una cuenta que ya exista
+                      // Se loguee y no le cree una cuenta que ya existe.
                       var superPassword = "Dr.Soler7788";
 
                       try {
@@ -137,3 +138,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+

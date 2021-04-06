@@ -21,12 +21,17 @@ class  CitaListState extends State <CitaList> {
           future: CitaServise().getByEmail(
             FirebaseAuth.instance.currentUser.email), 
           builder: (context, snapshot) {
-            if (snapshot.hasData || snapshot.data.leght == 0){
-              return Container(child:Text("No tiene citas"),
+            List<Cita> citas = snapshot.data;
+
+            if (citas == null || citas.length == 0){
+              return Container(
+                child:Text(
+                  "No tiene citas",
+                  style: TextStyle(color: Colors.orange),
+                  ),
               );
             }
-
-            List<Cita> citas = snapshot.data;
+            
             return ListView.builder(
               itemCount: citas.length,
               itemBuilder: (context,idx){

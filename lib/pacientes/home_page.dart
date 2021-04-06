@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                 TextButton(onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CreateCita())), 
                   child: Text("Agendar Citar")),
-                CitaList()
+                Expanded(child: CitaList())
                ],
             ),
           ),

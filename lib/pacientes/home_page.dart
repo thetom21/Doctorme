@@ -6,9 +6,14 @@ import 'package:flutter/material.dart';
 import 'cita_list.dart';
 import 'create_cita.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +29,14 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                TextButton(onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CreateCita())), 
+                TextButton(
+                  onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute( 
+                                  builder: (context) => CreateCita())) 
+                            .then((value) {
+                          setState(() { }); 
+                          }),
                   child: Text("Agendar Citar")),
                 Expanded(child: CitaList())
                ],

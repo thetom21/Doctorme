@@ -8,6 +8,7 @@ class HomeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, //Se remueve el label de debug.
       title: 'Dr. Soler',
       theme: ThemeData(
         primarySwatch: Colors.blue,

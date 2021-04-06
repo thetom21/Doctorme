@@ -26,6 +26,8 @@ class CitaService{
         citas.add(Cita.fromSnapshot(element));
       });
 
+      citas.sort((a, b) => b.day.compareTo(a.day));
+
       return citas;
     } catch (e) {
       print(e);
@@ -36,8 +38,7 @@ class CitaService{
 
   Future<void> cancel(DocumentReference reference) async {
     try{
-      var snapshot = await FirebaseFirestore.instance
-          .collection('citas')
+      await FirebaseFirestore.instance
           .doc(reference.path)
           .update({'status': 'cancelado'});
     } catch (e) {

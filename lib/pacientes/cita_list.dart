@@ -16,6 +16,7 @@ class CitaList extends StatefulWidget {
 
 class  CitaListState extends State <CitaList> {
   final citaService = CitaService();
+  
   @override
   Widget build(BuildContext context) {
 
@@ -39,18 +40,21 @@ class  CitaListState extends State <CitaList> {
               itemBuilder: (context,idx){
                 Cita c = citas[idx];
                 return ListTile(
-                  tileColor: c.isCancelled() ? Colors.red[100] : Colors.transparent,
+                  tileColor: 
+                      c.isCancelled() ? Colors.red[100] : Colors.grey[100],
                   leading: Text(c.turn.toString()),
                   title: Center(child: Text(c.formattedDay())),
                   subtitle: Center(child: Text(c.status)),
                   trailing: c.isCancelled()
                   ? IconButton(
                       mouseCursor: MouseCursor.uncontrolled,
-                      icon: Icon(Icons.class__outlined), onPressed: null)
-                  : IconButton(
+                      icon: Icon(Icons.close_outlined),
+                      onPressed: null)
+                  : IconButton( // Boton de cancelar.
                       icon: Icon(Icons.close_outlined), 
                       onPressed: () async {
                         await citaService.cancel(c.reference);
+                        setState(() {});
                   }),
               );
           });

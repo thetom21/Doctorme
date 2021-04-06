@@ -1,0 +1,47 @@
+import 'dart:convert';
+
+import 'package:doctorme/screens/pacientes/cita_list.dart';
+import 'package:doctorme/screens/pacientes/create_cita.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () => FirebaseAuth.instance.signOut(),
+          ),
+          title: Text("Citas - Admin"),
+        ), //AppBar 
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute( 
+                                  builder: (context) => CreateCita())) 
+                            .then((value) {
+                          setState(() { }); 
+                          }),
+                  child: Text("Agendar Citar")),
+                Expanded(child: CitaList())
+               ],
+            ),
+          ),
+        ),
+    ); //Scaffold
+  }
+}

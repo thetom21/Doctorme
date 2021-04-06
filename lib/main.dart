@@ -1,15 +1,13 @@
 //import 'dart:math';
+import 'package:doctorme/screens/admin/admin_app.dart';
+import 'package:doctorme/screens/pacientes/home_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 //Authentificación de la Base de Datos.
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 //le puse en nombre al el paquete para luego llmarlos mas adelante
-
-
-import 'pacientes/home_app.dart';
 import 'login.dart';
-
 
 Future main() async {
   //aqui llamo al paquete utilizado TUTORIAL *https://pub.dev/packages/flutter_dotenv*
@@ -32,6 +30,9 @@ class MyApp extends StatelessWidget {
                if (snapshot.data == null) {
                  return LoginApp();
                }
+               if (isAdmins(snapshot.data.email))  {
+                 return AdminApp();
+               }
                return HomeApp();
              });
           }// StreamBuilder
@@ -41,3 +42,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//Para saber cual es el usuario que esta entrando,
+//si es el doctor o la secretaria.
+bool isAdmins(email) => ["hola@doctor.com", "secre@doctor.com"].contains(email);

@@ -1,7 +1,7 @@
 // Es donde se nos mostraran la lista de los pacientes 
 // y sus datos con su turno.
 
-import 'package:doctorme/cita_service.dart';
+import 'package:doctorme/services/cita_service.dart';
 import 'package:doctorme/models/cita.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

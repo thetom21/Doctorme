@@ -1,7 +1,7 @@
 //Esto es para agregar a la base de datos.
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'models/cita.dart';
+import '../models/cita.dart';
 
 class CitaService{
 

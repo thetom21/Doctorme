@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'cita_list.dart';
 import 'create_cita.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,8 +26,9 @@ class HomePage extends StatelessWidget {
               children: [
                 TextButton(onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CreateCita())), 
-                  child: Text("Agendar Citar"))
-              ],
+                  child: Text("Agendar Citar")),
+                CitaList()
+               ],
             ),
           ),
         ),

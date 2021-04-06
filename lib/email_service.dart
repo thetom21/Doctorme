@@ -26,6 +26,9 @@ EmailService(){
                       var min=1000;
                       var max=9999;
                       var code = Random().nextInt(max-min) + min;
+                      if (env.emailDisabled) {
+                        return code;
+                      }
                       //esta suma me dara de 1000 a 9999 y le sumo el min
                       //alfinal para asegurarme de que tenga mil el codigo
 

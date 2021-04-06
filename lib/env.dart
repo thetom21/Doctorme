@@ -6,4 +6,5 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class Env{
   String mailgunDomain = env['MAILGUN_DOMAIN'];
   String mailgunApiKey = env['MAILGUN_API_KEY'];
+  bool emailDisabled = env['EMAIL_DISABLED'] == '1';
 }

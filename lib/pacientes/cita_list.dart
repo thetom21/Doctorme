@@ -5,6 +5,7 @@ import 'package:doctorme/cita_service.dart';
 import 'package:doctorme/models/cita.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class CitaList extends StatefulWidget {
  CitaList({Key key}) : super(key: key);
@@ -14,12 +15,13 @@ class CitaList extends StatefulWidget {
 }
 
 class  CitaListState extends State <CitaList> {
+  final citaService = CitaService();
   @override
   Widget build(BuildContext context) {
 
         return FutureBuilder(
-          future: CitaServise().getByEmail(
-            FirebaseAuth.instance.currentUser.email), 
+          future:
+           citaService.getByEmail(FirebaseAuth.instance.currentUser.email), 
           builder: (context, snapshot) {
             List<Cita> citas = snapshot.data;
 
@@ -37,10 +39,19 @@ class  CitaListState extends State <CitaList> {
               itemBuilder: (context,idx){
                 Cita c = citas[idx];
                 return ListTile(
+                  tileColor: c.isCancelled() ? Colors.red[100] : Colors.transparent,
                   leading: Text(c.turn.toString()),
-                  title: Text(c.formattedDay()),
-                  trailing: c.status == 'cancelled' ? null 
-                  : IconButton(icon: Icon(Icons.close), onPressed: () => {}),
+                  title: Center(child: Text(c.formattedDay())),
+                  subtitle: Center(child: Text(c.status)),
+                  trailing: c.isCancelled()
+                  ? IconButton(
+                      mouseCursor: MouseCursor.uncontrolled,
+                      icon: Icon(Icons.class__outlined), onPressed: null)
+                  : IconButton(
+                      icon: Icon(Icons.close_outlined), 
+                      onPressed: () async {
+                        await citaService.cancel(c.reference);
+                  }),
               );
           });
           });

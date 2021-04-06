@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'models/cita.dart';
 
-class CitaServise{
+class CitaService{
 
   Future<void> create(String email, DateTime day) async {
     try{
@@ -32,5 +32,16 @@ class CitaServise{
       return null;
     }
     
+  }
+
+  Future<void> cancel(DocumentReference reference) async {
+    try{
+      var snapshot = await FirebaseFirestore.instance
+          .collection('citas')
+          .doc(reference.path)
+          .update({'status': 'cancelado'});
+    } catch (e) {
+      print(e);
+    }
   }
 }

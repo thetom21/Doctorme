@@ -13,7 +13,7 @@ class CreateCita extends StatefulWidget {
 }
 
 class _CreateCitaState extends State<CreateCita> {
-  CitaServise citaServise = CitaServise();
+  CitaService citaService = CitaService();
   DateTime _focusedDay;
   DateTime _selectedDay;
 
@@ -50,7 +50,7 @@ class _CreateCitaState extends State<CreateCita> {
             //Boton para poder agregar la cita
             //Y te dira el dia, estado y turno de la cita.
             TextButton(onPressed: () async {
-              await citaServise.create(
+              await citaService.create(
                   FirebaseAuth.instance.currentUser.email, _selectedDay);
                 Navigator.pop(context);
 

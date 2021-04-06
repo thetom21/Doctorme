@@ -5,6 +5,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Cita {
   int turn;
   DateTime day;
+
+  //Status
+  // pendiente
+  // cancelado
   String status;
   String email;
   DocumentReference reference;
@@ -22,4 +26,6 @@ class Cita {
       day = map['day'].toDate(),
       status = map['status'],
       email = map['email'];
+
+  bool isCancelled() => this.status == 'cancelado';
   }

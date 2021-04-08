@@ -41,28 +41,22 @@ class _HomePageState extends State<HomePage> {
           ),
           title: Text("Admin"),
         ), //AppBar 
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.count(
-              crossAxisCount:count ,
-              children: [
-                TableCalendar(
-                selectedDayPredicate: (day) => _selectedDay == day,
-                onDaySelected: (selectedDay, focusedDay){
-                  setState(() {
-                    _focusedDay = selectedDay;
-                    _selectedDay = selectedDay;
-                  });
-                },
-                focusedDay: _focusedDay,
-                firstDay: DateTime.now(),
-                lastDay: DateTime.now().add(Duration(days: 300))),
-                Expanded(
-                  child: CitaList(day: _selectedDay,))
-               ],
-            ),
-          ),
+        body: GridView.count(
+          crossAxisCount:count ,
+          children: [
+            TableCalendar(
+            selectedDayPredicate: (day) => _selectedDay == day,
+            onDaySelected: (selectedDay, focusedDay){
+              setState(() {
+                _focusedDay = selectedDay;
+                _selectedDay = selectedDay;
+              });
+            },
+            focusedDay: _focusedDay,
+            firstDay: DateTime.now(),
+            lastDay: DateTime.now().add(Duration(days: 300))),
+            CitaList(day: _selectedDay,)
+           ],
         ),
     ); //Scaffold
   }

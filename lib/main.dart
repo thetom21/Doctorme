@@ -8,10 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 //le puse en nombre al el paquete para luego llmarlos mas adelante
 import 'login.dart';
+//package que quita el hashtag
+import 'package:url_strategy/url_strategy.dart';
 
 Future main() async {
   //aqui llamo al paquete utilizado TUTORIAL *https://pub.dev/packages/flutter_dotenv*
    await DotEnv.load(fileName: ".env");
+   //se setea el path para quitar el hashtag en el url
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 

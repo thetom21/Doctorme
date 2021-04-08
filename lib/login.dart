@@ -8,6 +8,7 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Dr. Soler',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -75,7 +76,15 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   child: Text("Entrar")),
-            )
+            ),
+            TextButton(onPressed: () async{
+                var code=await widget.emailService
+                        .sendSignInCode(_emailController.text);
+                      setState(() {
+                        authCode = code;
+                        print(code);
+                      });
+            }, child: Text("Enviar otro codigo",style: TextStyle(fontSize: 10),))
           ],
         ),
       ),

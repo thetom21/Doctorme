@@ -10,13 +10,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'login.dart';
 //package que quita el hashtag
 import 'package:url_strategy/url_strategy.dart';
+//package que agrega el cambio de idioma al calendario
+import 'package:intl/date_symbol_data_local.dart';
 
 Future main() async {
   //aqui llamo al paquete utilizado TUTORIAL *https://pub.dev/packages/flutter_dotenv*
    await DotEnv.load(fileName: ".env");
    //se setea el path para quitar el hashtag en el url
   setPathUrlStrategy();
-  runApp(MyApp());
+ initializeDateFormatting().then((_) =>runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {

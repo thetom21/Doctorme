@@ -1,5 +1,5 @@
-import 'dart:convert';
 
+import 'package:doctorme/screens/admin/citaform.dart';
 import 'package:doctorme/screens/admin/list.dart';
 import 'package:doctorme/services/cita_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   CitaService citaService = CitaService();
   DateTime _focusedDay;
   DateTime _selectedDay;
+  bool expanded = false;
 
   @override
   void initState() {
@@ -45,6 +46,9 @@ class _HomePageState extends State<HomePage> {
           crossAxisCount:count ,
           children: [
             TableCalendar(
+              locale: 'es_Es',
+              headerStyle: 
+              HeaderStyle(titleCentered: true, formatButtonVisible: false),
             selectedDayPredicate: (day) => _selectedDay == day,
             onDaySelected: (selectedDay, focusedDay){
               setState(() {
@@ -55,9 +59,24 @@ class _HomePageState extends State<HomePage> {
             focusedDay: _focusedDay,
             firstDay: DateTime.now(),
             lastDay: DateTime.now().add(Duration(days: 300))),
-            CitaList(day: _selectedDay,)
-           ],
-        ),
-    ); //Scaffold
-  }
-}
+            Column(
+              children: [
+                TextButton(onPressed: () {setState(() {
+                  expanded = !expanded;
+                });}, child: Text("Agregando Cita")),
+                Visibility(visible: expanded,child: CitaForm(day: _selectedDay,
+                refreshDay: (){
+                  setState(() {
+                    
+                  });
+                },)),
+                              Expanded(child: CitaList(day: _selectedDay,)),
+                              ],
+                            )
+                           ],
+                        ),
+                    ); //Scaffold
+                  }
+                }
+                
+ 

@@ -37,6 +37,9 @@ class _CreateCitaState extends State<CreateCita> {
           children: [
             //Se seleccionna el dia para agendar la cita.
             TableCalendar(
+              locale: 'es_Es',
+              headerStyle: 
+              HeaderStyle(titleCentered: true, formatButtonVisible: false),
                 selectedDayPredicate: (day) => _selectedDay == day,
                 onDaySelected: (selectedDay, focusedDay){
                   setState(() {

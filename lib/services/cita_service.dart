@@ -11,9 +11,9 @@ class CitaService{
 
   Future<void> create(String email, DateTime day) async {
     try{
-      var citas = await getByDay(day);
+      var citasOfTheDay = await getByDay(day);
       var turn = 1;
-      citas.forEach((element) => turn = max(element.turn+1,turn));
+      citasOfTheDay.forEach((element) => turn = max(element.turn+1,turn));
       await FirebaseFirestore.instance.collection('citas').add({
         'email': email, 'day': day, 'turn': 1, 'status': 'pendiente'});
     } catch(e) {

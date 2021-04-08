@@ -53,7 +53,7 @@ class  CitaListState extends State <CitaList> {
                   : IconButton( // Boton de cancelar.
                       icon: Icon(Icons.close_outlined), 
                       onPressed: () async {
-                        await citaService.cancel(c.reference);
+                        await citaService.cancel(c);
                         setState(() {});
                   }),
               );

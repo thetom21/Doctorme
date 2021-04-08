@@ -52,7 +52,7 @@ class  CitaListState extends State <CitaList> {
                 return ListTile(
                   tileColor: 
                       c.isCancelled() ? Colors.red[100] : Colors.grey[100],
-                  leading: Text(c.turn.toString()),
+                  leading: Text(c.turn > 0 ? c.turn.toString(): ""),
                   title: Center(child: Text(c.email)),
                   subtitle: Center(child: Text(c.status)),
                   trailing: c.isCancelled()
@@ -63,7 +63,7 @@ class  CitaListState extends State <CitaList> {
                   : IconButton( // Boton de cancelar.
                       icon: Icon(Icons.close_outlined), 
                       onPressed: () async {
-                        await citaService.cancel(c.reference);
+                        await citaService.cancel(c);
                         setState(() {});
                   }),
               );

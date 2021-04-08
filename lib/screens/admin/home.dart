@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.exit_to_app),
             onPressed: () => FirebaseAuth.instance.signOut(),
           ),
-          title: Text("Citas - Admin"),
+          title: Text("Admin"),
         ), //AppBar 
         body: Center(
           child: Padding(
@@ -58,7 +58,8 @@ class _HomePageState extends State<HomePage> {
                 focusedDay: _focusedDay,
                 firstDay: DateTime.now(),
                 lastDay: DateTime.now().add(Duration(days: 300))),
-                Expanded(child: CitaList())
+                Expanded(
+                  child: CitaList(day: _selectedDay,))
                ],
             ),
           ),

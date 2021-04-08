@@ -20,6 +20,7 @@ class _CreateCitaState extends State<CreateCita> {
   //Se instancea el objeto para las citas
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     _focusedDay = DateTime.now();
@@ -37,6 +38,9 @@ class _CreateCitaState extends State<CreateCita> {
           children: [
             //Se seleccionna el dia para agendar la cita.
             TableCalendar(
+              locale: 'es_ES',
+              headerStyle: HeaderStyle(
+                titleCentered: true, formatButtonVisible: false),
                 selectedDayPredicate: (day) => _selectedDay == day,
                 onDaySelected: (selectedDay, focusedDay){
                   setState(() {

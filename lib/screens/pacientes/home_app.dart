@@ -14,9 +14,9 @@ class HomeApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ), //ThemeData
       //Rutas que las personas van a poder accesar.
-      routes: {'/': (context) => HomePage()},
+      routes: {
+        '/': (context) => HomePage()},
      
     );
   }
 }
-

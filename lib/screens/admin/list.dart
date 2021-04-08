@@ -3,12 +3,12 @@
 
 import 'package:doctorme/services/cita_service.dart';
 import 'package:doctorme/models/cita.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class CitaList extends StatefulWidget {
- CitaList({Key key}) : super(key: key);
+  final DateTime day;
+ CitaList({Key key, this.day}) : super(key: key);
 
   @override
    CitaListState createState() =>  CitaListState();
@@ -22,16 +22,23 @@ class  CitaListState extends State <CitaList> {
 
         return FutureBuilder(
           future:
-           citaService.getByEmail(FirebaseAuth.instance.currentUser.email), 
+           citaService.getByDay(widget.day), 
           builder: (context, snapshot) {
             List<Cita> citas = snapshot.data;
 
             if (citas == null || citas.length == 0){
-              return Container(
-                child:Text(
-                  "No tiene citas",
-                  style: TextStyle(color: Colors.orange),
-                  ),
+              return Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child:Text(
+                    "No hay citas",
+                    style: TextStyle(
+                      color: Colors.orange, 
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                    ),
+                ),
               );
             }
             
@@ -42,8 +49,8 @@ class  CitaListState extends State <CitaList> {
                 return ListTile(
                   tileColor: 
                       c.isCancelled() ? Colors.red[100] : Colors.grey[100],
-                  leading: Text(c.turn.toString()),
-                  title: Center(child: Text(c.formattedDay())),
+                  leading: Text(c.turn > 0 ?c.turn.toString() : ""),
+                  title: Center(child: Text(c.email)),
                   subtitle: Center(child: Text(c.status)),
                   trailing: c.isCancelled()
                   ? IconButton(

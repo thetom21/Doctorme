@@ -6,13 +6,18 @@ import 'package:firebase_core/firebase_core.dart';
 //Authentificación de la Base de Datos.
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:url_strategy/url_strategy.dart';
 //le puse en nombre al el paquete para luego llmarlos mas adelante
 import 'login.dart';
 
 Future main() async {
   //aqui llamo al paquete utilizado TUTORIAL *https://pub.dev/packages/flutter_dotenv*
    await DotEnv.load(fileName: ".env");
-  runApp(MyApp());
+   // Here we set the URL strategy for our web app.
+  // It is safe to call this function when running on mobile or desktop as well.
+  setPathUrlStrategy();
+  initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {

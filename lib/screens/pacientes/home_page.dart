@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +21,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.exit_to_app),
             onPressed: () => FirebaseAuth.instance.signOut(),
           ),
-          title: Text("Citas"),
-        ), //AppBar 
+          title: Text("Citas"),), //AppBar 
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

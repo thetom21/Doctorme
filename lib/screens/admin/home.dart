@@ -75,6 +75,36 @@ class _HomePageState extends State<HomePage> {
                             )
                            ],
                         ),
+                          endDrawer: Drawer(
+                            child:  ListView(
+                              children: <Widget>[
+                                ListTile(
+                                title:Text('Disponibles'),
+                                onTap: (){
+
+                                },
+                              ),
+                               ListTile(
+                                title:Text('Agregar Articulos'),
+                                onTap: (){
+
+                                },
+                              ),
+                               ListTile(
+                                title:Text('Despacho de Articulo'),
+                                onTap: (){
+
+                                },
+                              ),
+                               ListTile(
+                                title:Text('Historial'),
+                                onTap: (){
+
+                                },
+                              ),
+                              
+                              ],),
+                          ),
                     ); //Scaffold
                   }
                 }

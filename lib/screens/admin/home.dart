@@ -1,31 +1,43 @@
-
-import 'package:doctorme/screens/admin/citaform.dart';
-import 'package:doctorme/screens/admin/list.dart';
-import 'package:doctorme/services/cita_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'agregar.dart';
+import 'disponible.dart';
+import 'historial.dart';
+import 'despachar.dart';
+import 'citas_admi.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+const   HomePage({Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  CitaService citaService = CitaService();
-  DateTime _focusedDay;
-  DateTime _selectedDay;
-  bool expanded = false;
+
+int _selectDrawerIteam=0;
+  _getDrawerIteamWidget(int pos){
+    //posciones de la pagina para poder cambiar entra ellas 
+    switch(pos){
+      case 0:return CitasAdmi();
+      case 1:return Disponible();
+      case 2:return Agregar();
+      case 3:return Despachar();
+      case 4:return Historial();
+    }
+  }
+
+  _onSelectIteam(int pos){
+    //set state me redibuja pantalla 
+    setState(() {
+      _selectDrawerIteam=pos;
+      
+    });
+  }
+
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _focusedDay = DateTime.now();
-    _selectedDay = DateTime.now();
-  }
+  
   
   @override
   Widget build(BuildContext context) {
@@ -42,71 +54,63 @@ class _HomePageState extends State<HomePage> {
           ),
           title: Text("Admin"),
         ), //AppBar 
-        body: GridView.count(
-          crossAxisCount:count ,
-          children: [
-            TableCalendar(
-              locale: 'es_Es',
-              headerStyle: 
-              HeaderStyle(titleCentered: true, formatButtonVisible: false),
-            selectedDayPredicate: (day) => _selectedDay == day,
-            onDaySelected: (selectedDay, focusedDay){
-              setState(() {
-                _focusedDay = selectedDay;
-                _selectedDay = selectedDay;
-              });
-            },
-            focusedDay: _focusedDay,
-            firstDay: DateTime.now(),
-            lastDay: DateTime.now().add(Duration(days: 300))),
-            Column(
-              children: [
-                TextButton(onPressed: () {setState(() {
-                  expanded = !expanded;
-                });}, child: Text("Agregando Cita")),
-                Visibility(visible: expanded,child: CitaForm(day: _selectedDay,
-                refreshDay: (){
-                  setState(() {
-                    
-                  });
-                },)),
-                              Expanded(child: CitaList(day: _selectedDay,)),
-                              ],
-                            )
-                           ],
-                        ),
+        body: _getDrawerIteamWidget(_selectDrawerIteam),
                           endDrawer: Drawer(
                             child:  ListView(
                               children: <Widget>[
+                                UserAccountsDrawerHeader(
+                                  accountName:Text('Dr.Soler'),
+                                  //cojer el mail dinamicamente 
+                                  accountEmail:Text('admin@gmail.com')),
                                 ListTile(
                                 title:Text('Disponibles'),
+                                leading: Icon(Icons.assignment_turned_in),
                                 onTap: (){
+                                  _onSelectIteam(1);
 
                                 },
                               ),
                                ListTile(
                                 title:Text('Agregar Articulos'),
+                                leading: Icon(Icons.add_shopping_cart),
                                 onTap: (){
+                                  _onSelectIteam(2);
 
                                 },
                               ),
                                ListTile(
                                 title:Text('Despacho de Articulo'),
+                                leading: Icon(Icons.remove_circle),
                                 onTap: (){
+                                  _onSelectIteam(3);
 
                                 },
                               ),
                                ListTile(
                                 title:Text('Historial'),
+                                leading: Icon(Icons.show_chart),
                                 onTap: (){
+                                  _onSelectIteam(4);
+                                  
+                                },
+                              ),
+
+                                      ListTile(
+                                title:Text('Home'),
+                                leading: Icon(Icons.home),
+                                onTap: (){
+                                  _onSelectIteam(0);
 
                                 },
                               ),
                               
                               ],),
                           ),
+      
+                          //extendBody: _getDrawerIteamWidget(_selectDrawerIteam),
+          
                     ); //Scaffold
                   }
                 }
                 
- 
+               

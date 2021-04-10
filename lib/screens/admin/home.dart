@@ -30,6 +30,7 @@ int _selectDrawerIteam=0;
   _onSelectIteam(int pos){
     //set state me redibuja pantalla 
     setState(() {
+      Navigator.of(context).pop();
       _selectDrawerIteam=pos;
       
     });
@@ -65,44 +66,54 @@ int _selectDrawerIteam=0;
                                 ListTile(
                                 title:Text('Disponibles'),
                                 leading: Icon(Icons.assignment_turned_in),
+                                selected: (1 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(1);
 
                                 },
                               ),
+                              Divider(),
                                ListTile(
                                 title:Text('Agregar Articulos'),
                                 leading: Icon(Icons.add_shopping_cart),
+                                selected: (2 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(2);
 
                                 },
                               ),
+                              Divider(),
                                ListTile(
                                 title:Text('Despacho de Articulo'),
                                 leading: Icon(Icons.remove_circle),
+                                selected: (3 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(3);
 
                                 },
                               ),
+                              Divider(),
                                ListTile(
                                 title:Text('Historial'),
                                 leading: Icon(Icons.show_chart),
+                                selected: (4 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(4);
                                   
                                 },
                               ),
+                              Divider(),
 
                                       ListTile(
                                 title:Text('Home'),
                                 leading: Icon(Icons.home),
+                                selected: (0 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(0);
 
                                 },
                               ),
+                              Divider(),
                               
                               ],),
                           ),

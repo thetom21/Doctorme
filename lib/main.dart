@@ -1,4 +1,5 @@
 //import 'dart:math';
+import 'package:doctorme/models/productos.dart';
 import 'package:doctorme/screens/admin/admin_app.dart';
 import 'package:doctorme/screens/pacientes/home_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +13,7 @@ import 'login.dart';
 import 'package:url_strategy/url_strategy.dart';
 //package que agrega el cambio de idioma al calendario
 import 'package:intl/date_symbol_data_local.dart';
+
 
 Future main() async {
   //aqui llamo al paquete utilizado TUTORIAL *https://pub.dev/packages/flutter_dotenv*
@@ -44,7 +46,9 @@ class MyApp extends StatelessWidget {
           }// StreamBuilder
 
           return CircularProgressIndicator();
+          
         });
+      
   }
 }
 

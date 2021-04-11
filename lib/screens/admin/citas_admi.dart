@@ -4,10 +4,6 @@ import 'package:doctorme/services/cita_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'agregar.dart';
-import 'disponible.dart';
-import 'historial.dart';
-import 'despachar.dart';
 
 class CitasAdmi extends StatefulWidget {
 const   CitasAdmi({Key key}) : super(key: key);
@@ -39,13 +35,6 @@ class _CitasAdmi extends State<CitasAdmi> {
       count = 1;
     }
     return Scaffold(
-        //appBar: AppBar(
-         // leading: IconButton(
-           // icon: Icon(Icons.exit_to_app),
-          //  onPressed: () => FirebaseAuth.instance.signOut(),
-         // ),
-         // title: Text("Admin"),
-       // ), //AppBar 
         body: GridView.count(
           crossAxisCount:count ,
           children: [

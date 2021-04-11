@@ -60,9 +60,7 @@ int _selectDrawerIteam=0;
                             child:  ListView(
                               children: <Widget>[
                                 UserAccountsDrawerHeader(
-                                  accountName:Text('Dr.Soler'),
-                                  //cojer el mail dinamicamente 
-                                  accountEmail:Text('admin@gmail.com')),
+                                  accountName:Text('Dr.Soler'), accountEmail: null,),
                                 ListTile(
                                 title:Text('Disponibles'),
                                 leading: Icon(Icons.assignment_turned_in),

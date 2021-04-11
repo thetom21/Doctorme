@@ -1,5 +1,6 @@
 import 'dart:html';
-
+import 'home.dart';
+import 'disponible.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,49 +15,62 @@ class Agregar extends StatefulWidget{
 
 
 class _AgregarState extends State<Agregar> {
-  TextEditingController nombre;
+  /*TextEditingController nombre;
   TextEditingController cantidad;
-  TextEditingController precio;
+  TextEditingController precio;*/
+  String nombre;
+  String cantidad;
+  String precio; 
+
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(200.0),
-        child: Column(children: <Widget>[
-          TextField(
-            decoration: InputDecoration(labelText: ('Nombre del producto:')),
-            controller:nombre ,
+        child:Form(
+          key:formkey ,
+          child: Column(children: <Widget>[
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: ('Nombre del producto:')),
+            onSaved: (value){
+              nombre=value;
+            },
           ),
-          TextField(decoration: InputDecoration(labelText: ('Precio del producto')),
-          controller: precio,),
-          TextField(decoration: InputDecoration(labelText: ('Cantidad del producto')),
-          controller: cantidad,),
+          TextFormField(decoration: InputDecoration(
+            labelText: ('Precio del producto')),
+          onSaved: (value){
+            precio=value;
+          },
+          ),
+          TextFormField(decoration: InputDecoration(
+            labelText: ('Cantidad del producto')),
+          onSaved: (value){
+            cantidad=value;
+          },
+          ),
           RaisedButton(
+            color: Colors.blue,
+            textColor: Colors.white,
             child:Text('Guardar producto') ,
-            onPressed: (){})
-          
-        ],),
-      ),
+            onPressed: (){_diponible(context);})
+                      
+                    ],),) 
+                  ),
+            
+                );
+                
+              }
+            
+        
+              void _diponible(BuildContext context) {
 
-    );
-    
-  }
-  @override
-  void initState() { 
-    super.initState();
-    nombre=TextEditingController();
-    cantidad=TextEditingController();
-    precio=TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    nombre.dispose();
-    cantidad.dispose();
-    precio.dispose();
-  }
+                  Navigator.of(context).pushNamed('/disponible',
+                  arguments:Productosdisponibles(nombre:'klk',
+                  cantidad:'10',
+                  precio:'10'));
+              }
 }
   

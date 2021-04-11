@@ -10,10 +10,10 @@ class HomePage extends StatefulWidget {
 const   HomePage({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePage createState() => _HomePage();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePage extends State<HomePage> {
 
 int _selectDrawerIteam=0;
   _getDrawerIteamWidget(int pos){

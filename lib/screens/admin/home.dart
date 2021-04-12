@@ -92,8 +92,8 @@ int _selectDrawerIteam=0;
                               ),
                               Divider(),
                                ListTile(
-                                title:Text('Historial'),
-                                leading: Icon(Icons.show_chart),
+                                title:Text('Expediente'),
+                                leading: Icon(Icons.create_new_folder),
                                 selected: (4 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(4);

@@ -110,13 +110,14 @@ class _Historial extends State<Historial> {
                 
               }
             
-        
+        //metodo llamado para validar y guadar 
+        //le pasmos la infomacion y no llev a la otra pestana 
               void _pacientes(BuildContext context) {
                 if(formkey.currentState.validate()){
                   formkey.currentState.save();
 
                   Navigator.of(context).pushNamed('/ver_historial',
-                  arguments:Pacientes(email: this._emailController,
+                  arguments:Pacientes(email: this._emailController.text,
                     nombrepaciente:this.nombrepaciente,
                   edad:this.edad,
                   peso:this.peso,

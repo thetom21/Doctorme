@@ -16,14 +16,25 @@ const   HomePage({Key key}) : super(key: key);
 class _HomePage extends State<HomePage> {
 
 int _selectDrawerIteam=0;
+var title='Admin';
   _getDrawerIteamWidget(int pos){
     //posciones de la pagina para poder cambiar entra ellas 
     switch(pos){
-      case 0:return CitasAdmi();
-      case 1:return Disponible();
-      case 2:return Agregar();
-      case 3:return Despachar();
-      case 4:return Historial();
+      case 0:
+      title = 'Admin';
+      return CitasAdmi();
+      case 1: 
+      title = 'Articulos Disponible';
+      return Disponible(onSelectIteam:_onSelectIteam);
+      case 2:
+      title = 'Agregar Articulo';
+      return Agregar(onSelectIteam:_onSelectIteam);
+      case 3:
+      title = 'Despechar Articulo';
+      return Despachar();
+      case 4:
+      title = 'Crear Expedediente';
+      return Historial();
     }
   }
 
@@ -53,7 +64,7 @@ int _selectDrawerIteam=0;
             icon: Icon(Icons.exit_to_app),
             onPressed: () => FirebaseAuth.instance.signOut(),
           ),
-          title: Text("Admin"),
+          title: Text(title),
         ), //AppBar 
         body: _getDrawerIteamWidget(_selectDrawerIteam),
                           endDrawer: Drawer(

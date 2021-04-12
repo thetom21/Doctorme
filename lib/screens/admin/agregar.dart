@@ -1,4 +1,6 @@
 import 'dart:html';
+import 'package:doctorme/models/producto.dart';
+import 'package:doctorme/services/articulo_service.dart';
 import 'package:doctorme/services/cita_service.dart';
 
 import 'home.dart';
@@ -8,6 +10,9 @@ import 'package:flutter/material.dart';
 
 
 class Agregar extends StatefulWidget{
+  final Function onSelectIteam;
+
+  const Agregar({Key key, this.onSelectIteam}) : super(key: key);
   @override
   _AgregarState createState() => _AgregarState();
 
@@ -19,7 +24,7 @@ class Agregar extends StatefulWidget{
 class _AgregarState extends State<Agregar> {
   String nombre;
   var cantidad = 0;
-  var precio = 0; 
+  var precio = 0.0; 
 
   final formkey = GlobalKey<FormState>();
   
@@ -49,7 +54,7 @@ class _AgregarState extends State<Agregar> {
               ),
               TextFormField(decoration: InputDecoration(
                 labelText: ('Precio del producto')),
-              onSaved: (value) => precio = int.tryParse(value)
+              onSaved: (value) => precio = double.tryParse(value)
                 
               ,
               validator: (value){
@@ -87,11 +92,8 @@ class _AgregarState extends State<Agregar> {
               void _diponible(BuildContext context) {
                 if(formkey.currentState.validate()){
                   formkey.currentState.save();
-
-                  Navigator.of(context).pushNamed('/disponible',
-                  arguments:Productosdisponibles(nombre:this.nombre,
-                  cantidad:this.cantidad,
-                  precio:this.precio));
+                  ArticuloService().create(this.nombre, this.cantidad, this.precio);
+                  widget.onSelectIteam(1);
                 }
 
                   

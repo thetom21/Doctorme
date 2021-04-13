@@ -1,3 +1,4 @@
+import 'package:doctorme/screens/admin/ver_historial.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'agregar.dart';
@@ -30,8 +31,8 @@ var title='Admin';
       title = 'Agregar Articulo';
       return Agregar(onSelectIteam:_onSelectIteam);
       case 3:
-      title = 'Despechar Articulo';
-      return Despachar();
+      title = 'Vista Expediente';
+      return Verhistorial();
       case 4:
       title = 'Crear Expedediente';
       return Historial();
@@ -93,8 +94,8 @@ var title='Admin';
                               ),
                               Divider(),
                                ListTile(
-                                title:Text('Despacho de Articulo'),
-                                leading: Icon(Icons.remove_circle),
+                                title:Text('Ver Expedientes'),
+                                leading: Icon(Icons.account_box_outlined),
                                 selected: (3 ==_selectDrawerIteam),
                                 onTap: (){
                                   _onSelectIteam(3);

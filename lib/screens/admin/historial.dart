@@ -1,6 +1,7 @@
 import 'dart:html';
-import 'package:doctorme/screens/admin/ver_historial.dart';
+import 'package:doctorme/models/pacientes.dart';
 import 'package:doctorme/services/cita_service.dart';
+import 'package:doctorme/services/pacientes_service.dart';
 import 'package:email_validator/email_validator.dart';
 
 import 'home.dart';
@@ -21,8 +22,8 @@ class Historial extends StatefulWidget{
 class _Historial extends State<Historial> {
   String nombrepaciente;
   String historialP;
-  var edad = 0;
-  var peso = 0; 
+  int edad;
+  double peso; 
   var _emailController = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
@@ -61,8 +62,8 @@ class _Historial extends State<Historial> {
                 },
               ),
               TextFormField(decoration: InputDecoration(
-                labelText: ('Peso del paciente')),
-              onSaved: (value) => edad = int.tryParse(value)
+                labelText: ('peso del paciente')),
+              onSaved: (value) => peso = double.tryParse(value)
                 
               ,
               validator: (value){
@@ -73,8 +74,8 @@ class _Historial extends State<Historial> {
               ),
               
               TextFormField(decoration: InputDecoration(
-                labelText: ('Edad del paciente')),
-              onSaved: (value) => peso = int.tryParse(value)
+                labelText: ('edad del pacinete')),
+              onSaved: (value) => edad = int.tryParse(value)
               ,
               validator: (value){
                   if(value.isEmpty){
@@ -99,7 +100,17 @@ class _Historial extends State<Historial> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 child:Text('Guardar producto') ,
-                onPressed: (){_pacientes(context);})
+                onPressed: (){
+                  showDialog(context: context,
+                  barrierDismissible: false
+                , builder: (context)=>AlertDialog(
+                  title: Text('Guardado'),
+                  content: Text('Precione OK!!'),
+                  actions: [FlatButton(
+                    onPressed: (){_verHistorial(context);
+                    Navigator.of(context).pop('ok');}, 
+                    child: Text('Ok'))],
+                ));})
                           
                         ],),),
           ),
@@ -110,18 +121,14 @@ class _Historial extends State<Historial> {
                 
               }
             
+
         //metodo llamado para validar y guadar 
         //le pasmos la infomacion y no llev a la otra pestana 
-              void _pacientes(BuildContext context) {
+              void _verHistorial(BuildContext context) {
                 if(formkey.currentState.validate()){
                   formkey.currentState.save();
+                  PacienteService().create(this.nombrepaciente,this.edad,this.peso, this._emailController.toString(),this.historialP);
 
-                  Navigator.of(context).pushNamed('/ver_historial',
-                  arguments:Pacientes(email: this._emailController.text,
-                    nombrepaciente:this.nombrepaciente,
-                  edad:this.edad,
-                  peso:this.peso,
-                  historialp:this.historialP));
                 }
 
                   

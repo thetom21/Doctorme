@@ -77,7 +77,18 @@ class _AgregarState extends State<Agregar> {
                 color: Colors.blue,
                 textColor: Colors.white,
                 child:Text('Guardar producto') ,
-                onPressed: (){_diponible(context);})
+                onPressed: ()
+                {showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context)=>AlertDialog(
+                  title: Text('Guardado'),
+                  content: Text('Precione OK!!'),
+                  actions: [FlatButton(
+                    onPressed: (){_diponible(context);
+                    Navigator.of(context).pop('ok');}, 
+                    child: Text('Ok'))],
+                ));})
                           
                         ],),),
           ),
@@ -93,7 +104,8 @@ class _AgregarState extends State<Agregar> {
                 if(formkey.currentState.validate()){
                   formkey.currentState.save();
                   ArticuloService().create(this.nombre, this.cantidad, this.precio);
-                  widget.onSelectIteam(1);
+                  //widget.onSelectIteam(1);
+                  //poner un mensage de que se guardo 
                 }
 
                   

@@ -12,6 +12,8 @@ import '../models/cita.dart';
 
 class ArticuloService{
 
+  //esto agrega a la base de dato
+
   Future<void> create(String nombre, int cantidad,double precio) async {
     try{
       
@@ -21,7 +23,7 @@ class ArticuloService{
 
     }
   }
-
+// busca los productos en la base de datos 
   Future<List<Producto>> getAll() async {
     try{
       var snapshot = await FirebaseFirestore.instance

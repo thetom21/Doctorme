@@ -1,52 +1,65 @@
 import 'dart:html';
+import 'package:doctorme/models/pacientes.dart';
 import 'package:doctorme/screens/admin/admin_app.dart';
+import 'package:doctorme/services/pacientes_service.dart';
 
 
 import 'admin_app.dart';
 
 import 'package:flutter/material.dart';
 
-class   Verhistorial extends StatefulWidget {
-const Verhistorial({Key key}) : super(key: key);
+class Verhistorial extends StatefulWidget {
+Function onSelectIteam;
+ Verhistorial({Key key,this.onSelectIteam}) : super(key: key);
 
   @override
-  _VerhistorialState createState() => _VerhistorialState();
+   VerhistorialState createState() =>  VerhistorialState();
 }
 
-class _VerhistorialState extends State<Verhistorial> {
+class  VerhistorialState extends State <Verhistorial> {
+  final paciente = PacienteService();
+  
   @override
   Widget build(BuildContext context) {
-    Pacientes expediente =ModalRoute.of(context).settings.arguments;
 
-    
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(' Expedientes'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[ 
-              Text(expediente.email.toString()) ,
-              Text(expediente.nombrepaciente),
-              Text(expediente.edad.toString()),
-              Text(expediente.peso.toString()),
-              Text(expediente.historialp),
+        return FutureBuilder(
+          future:
+           paciente.getAll(), 
+          builder: (context, snapshot) {
+            List<Pacientes> paciente = snapshot.data;
 
-              
-          ],
-        ),
-      ),
-    );
-  }
-}
-//clase creada para llamar las variables que se le pidebn y pasarlas 
-//a los argumentos 
-class Pacientes{
-  String nombrepaciente;
-   var edad=0;
-   var peso =0;
-   var email;
-   String historialp;
-   Pacientes({this.nombrepaciente,this.edad,this.peso,this.email,this.historialp});
-}
+           if (paciente == null || paciente.length == 0){
+              return Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                child:Text(
+                  "No hay Expedinetes ",
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                  ),
+                ),  
+              );
+            }
+            
+            return ListView.builder(
+              itemCount: paciente.length,
+              itemBuilder: (context,idx){
+                Pacientes c = paciente[idx];
+                return ListTile(
+                  leading: Text(c.edad.toString(),),
+                  title: Center(child: Text(c.nombrepaciente)),
+                  subtitle: Center(child: Text(c.date.toIso8601String())),
+                  trailing: IconButton( // Boton de editar.
+                      icon: Icon(Icons.edit), 
+                      onPressed:(){}
+                      
+                  
+                  ),
+              );
+          });
+          });
+      }
+    }

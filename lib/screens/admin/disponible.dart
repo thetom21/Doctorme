@@ -74,7 +74,7 @@ class  DisponibleState extends State <Disponible> {
               itemBuilder: (context,idx){
                 Producto c = articulos[idx];
                 return ListTile(
-                  leading: Text(c.cantidad.toString()),
+                  leading: Text(c.cantidad.toString(),),
                   title: Center(child: Text(c.nombre)),
                   subtitle: Center(child: Text(c.date.toIso8601String())),
                   trailing: IconButton( // Boton de cancelar.

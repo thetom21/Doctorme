@@ -65,7 +65,7 @@ var title='Admin';
             icon: Icon(Icons.exit_to_app),
             onPressed: () => FirebaseAuth.instance.signOut(),
           ),
-          title: Text(title),
+          title: Text('ADMIN'),
         ), //AppBar 
         body: _getDrawerIteamWidget(_selectDrawerIteam),
                           endDrawer: Drawer(

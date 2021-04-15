@@ -3,7 +3,6 @@
 
 import 'package:doctorme/services/cita_service.dart';
 import 'package:doctorme/models/cita.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 

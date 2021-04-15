@@ -1,15 +1,9 @@
-import 'dart:html';
 import 'package:doctorme/models/pacientes.dart';
-import 'package:doctorme/screens/admin/admin_app.dart';
 import 'package:doctorme/services/pacientes_service.dart';
-
-
-import 'admin_app.dart';
-
 import 'package:flutter/material.dart';
 
 class Verhistorial extends StatefulWidget {
-Function onSelectIteam;
+final Function onSelectIteam;
  Verhistorial({Key key,this.onSelectIteam}) : super(key: key);
 
   @override

@@ -1,10 +1,4 @@
-import 'dart:html';
-import 'package:doctorme/models/producto.dart';
 import 'package:doctorme/services/articulo_service.dart';
-import 'package:doctorme/services/cita_service.dart';
-
-import 'home.dart';
-import 'disponible.dart';
 import 'package:flutter/material.dart';
 
 
@@ -48,8 +42,8 @@ class _AgregarState extends State<Agregar> {
                 },
                 validator: (value){
                   if(value.isEmpty){
-                    return "llene este campo para gurdar";
-                  }
+                    return "llene este campo para guardar";
+                  }return null;
                 },
               ),
               TextFormField(decoration: InputDecoration(
@@ -60,7 +54,7 @@ class _AgregarState extends State<Agregar> {
               validator: (value){
                   if(value.isEmpty){
                     return "llene este campo para gurdar";
-                  }
+                  } return null;
                 },
               ),
               TextFormField(decoration: InputDecoration(
@@ -70,7 +64,7 @@ class _AgregarState extends State<Agregar> {
               validator: (value){
                   if(value.isEmpty){
                     return "llene este campo para gurdar";
-                  }
+                  } return null;
                 },
               ),
               RaisedButton(

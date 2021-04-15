@@ -1,11 +1,5 @@
-import 'dart:html';
-import 'package:doctorme/models/pacientes.dart';
-import 'package:doctorme/services/cita_service.dart';
 import 'package:doctorme/services/pacientes_service.dart';
 import 'package:email_validator/email_validator.dart';
-
-import 'home.dart';
-import 'disponible.dart';
 import 'package:flutter/material.dart';
 
 
@@ -58,7 +52,7 @@ class _Historial extends State<Historial> {
                 validator: (value){
                   if(value.isEmpty){
                     return "llene este campo para guardar";
-                  }
+                  } return null;
                 },
               ),
               TextFormField(decoration: InputDecoration(
@@ -69,7 +63,7 @@ class _Historial extends State<Historial> {
               validator: (value){
                   if(value.isEmpty){
                     return "llene este campo para guardar";
-                  }
+                  } return null;
                 },
               ),
               
@@ -80,7 +74,7 @@ class _Historial extends State<Historial> {
               validator: (value){
                   if(value.isEmpty){
                     return "llene este campo para guardar";
-                  }
+                  } return null;
                 },
               ),
                 TextFormField(
@@ -92,7 +86,7 @@ class _Historial extends State<Historial> {
                   validator: (value){
                   if(value.isEmpty){
                     return "llene este campo para guardar";
-                  }
+                  } return null;
                 },
                   maxLines: 5,
                 ),              

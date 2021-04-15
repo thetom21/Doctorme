@@ -6,7 +6,6 @@ import 'disponible.dart';
 import 'historial.dart';
 import 'despachar.dart';
 import 'ver_historial.dart';
-import 'citas_admi.dart';
 
 class AdminApp extends StatelessWidget {
   const AdminApp({Key key}) : super(key: key);

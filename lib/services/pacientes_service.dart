@@ -1,14 +1,6 @@
 //Esto es para agregar a la base de datos.
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorme/models/pacientes.dart';
-import 'package:doctorme/screens/admin/disponible.dart';
-
-
-import '../models/cita.dart';
-import '../models/cita.dart';
-import '../models/cita.dart';
 
 class PacienteService{
 

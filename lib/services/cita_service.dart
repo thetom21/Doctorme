@@ -13,13 +13,12 @@ class CitaService{
       var citasOfTheDay = await getByDay(day);
       var turn = 1;
       citasOfTheDay.forEach((element) => turn = max(element.turn + 1, turn));
-
-      await FirebaseFirestore.instance.collection('citas').add({ //Instaciar base de datos en el campo de lista.
-        'email': email, 'day': day, 'turn': turn, 'status': 'pendiente'});
-
-        /*f( turn > 3) {
-          print('Este dia esta lleno, seleccione otro día');
-        } */
+        if(turn <= 3) {
+          await FirebaseFirestore.instance.collection('citas').add({ //Instaciar base de datos en el campo de lista.
+          'email': email, 'day': day, 'turn': turn, 'status': 'pendiente'});
+        }else{
+          print("Cupos llenos, seleccione otro día");
+        }
     } catch(e) {
 
     }

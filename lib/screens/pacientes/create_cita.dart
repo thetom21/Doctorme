@@ -20,6 +20,7 @@ class _CreateCitaState extends State<CreateCita> {
   //Se instancea el objeto para las citas
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     _focusedDay = DateTime.now();

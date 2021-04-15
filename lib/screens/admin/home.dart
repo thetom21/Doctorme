@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'agregar.dart';
 import 'disponible.dart';
 import 'historial.dart';
-import 'despachar.dart';
 import 'citas_admi.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,10 +53,8 @@ var title='Admin';
   
   @override
   Widget build(BuildContext context) {
-    //variables para poder arreglar el porblema del tamano del calendario
-    var count = 2; 
+    //variables para poder arreglar el problema del tamano del calendario
     if(MediaQuery.of(context).size.width<700){
-      count = 1;
     }
     return Scaffold(
         appBar: AppBar(

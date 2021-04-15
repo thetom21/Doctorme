@@ -1,11 +1,5 @@
-import 'dart:html';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorme/models/producto.dart';
-import 'package:doctorme/screens/admin/admin_app.dart';
 import 'package:doctorme/services/articulo_service.dart';
-
-import 'admin_app.dart';
-
 import 'package:flutter/material.dart';
 
 /*class Disponible extends StatefulWidget {
@@ -34,7 +28,7 @@ class _DisponibleState extends State<Disponible> {
 
 
 class Disponible extends StatefulWidget {
-Function onSelectIteam;
+final Function onSelectIteam;
  Disponible({Key key,this.onSelectIteam}) : super(key: key);
 
   @override

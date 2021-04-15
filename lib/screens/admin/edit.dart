@@ -1,18 +1,27 @@
+import 'package:doctorme/models/pacientes.dart';
 import 'package:doctorme/services/pacientes_service.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-class Historial extends StatefulWidget {
+
+
+class EditHistorial extends StatefulWidget {
+  final Pacientes paciente;
+
+  const EditHistorial({Key key, this.paciente}) : super(key: key);
   @override
-  _Historial createState() => _Historial();
+  _EditHistorial createState() => _EditHistorial();
 }
 
-class _Historial extends State<Historial> {
-  String nombrepaciente;
-  String historialP;
-  int edad;
-  double peso;
+class _EditHistorial extends State<EditHistorial> {
   var _emailController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _emailController.text=widget.paciente.email;
+  }
 
   final formkey = GlobalKey<FormState>();
 
@@ -30,6 +39,9 @@ class _Historial extends State<Historial> {
                   children: <Widget>[
                     TextFormField(
                       controller: _emailController,
+                      onSaved: (value) {
+                        widget.paciente.email = value;
+                      },
                       validator: (value) => value.isEmpty
                           ? "Correo Requerido"
                           : EmailValidator.validate(value)
@@ -38,10 +50,11 @@ class _Historial extends State<Historial> {
                       decoration: InputDecoration(labelText: "Email"),
                     ),
                     TextFormField(
+                      initialValue: widget.paciente.nombrepaciente,
                       decoration:
                           InputDecoration(labelText: ('Nombre del paciente:')),
                       onSaved: (value) {
-                        nombrepaciente = value;
+                        widget.paciente.nombrepaciente = value;
                       },
                       validator: (value) {
                         if (value.isEmpty) {
@@ -51,9 +64,11 @@ class _Historial extends State<Historial> {
                       },
                     ),
                     TextFormField(
+                      initialValue: widget.paciente.peso.toString(),
                       decoration:
                           InputDecoration(labelText: ('peso del paciente')),
-                      onSaved: (value) => peso = double.tryParse(value),
+                      onSaved: (value) =>
+                          widget.paciente.peso = double.tryParse(value),
                       validator: (value) {
                         if (value.isEmpty) {
                           return "llene este campo para guardar";
@@ -62,9 +77,11 @@ class _Historial extends State<Historial> {
                       },
                     ),
                     TextFormField(
+                      initialValue: widget.paciente.edad.toString(),
                       decoration:
                           InputDecoration(labelText: ('edad del pacinete')),
-                      onSaved: (value) => edad = int.tryParse(value),
+                      onSaved: (value) =>
+                          widget.paciente.edad = int.tryParse(value),
                       validator: (value) {
                         if (value.isEmpty) {
                           return "llene este campo para guardar";
@@ -73,12 +90,13 @@ class _Historial extends State<Historial> {
                       },
                     ),
                     TextFormField(
+                      initialValue: widget.paciente.historial,
                       decoration: InputDecoration(
                         labelText: ("Escriba aqui"),
                         border: OutlineInputBorder(),
                       ),
                       onSaved: (value) {
-                        historialP = value;
+                        widget.paciente.historial = value;
                       },
                       validator: (value) {
                         if (value.isEmpty) {
@@ -105,7 +123,7 @@ class _Historial extends State<Historial> {
                                     actions: [
                                       TextButton(
                                           onPressed: () {
-                                            _verHistorial(context);
+                                            _save(context);
                                             Navigator.of(context).pop('ok');
                                           },
                                           child: Text('Ok'))
@@ -122,11 +140,10 @@ class _Historial extends State<Historial> {
 
   //metodo llamado para validar y guadar
   //le pasmos la infomacion y no llev a la otra pestana
-  void _verHistorial(BuildContext context) {
+  void _save(BuildContext context) {
     if (formkey.currentState.validate()) {
       formkey.currentState.save();
-      PacienteService().create(this.nombrepaciente, this.edad, this.peso,
-          this._emailController.text, this.historialP);
+      PacienteService().update(widget.paciente);
     }
   }
 }

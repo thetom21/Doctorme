@@ -6,11 +6,11 @@ class PacienteService{
 
   //esto agrega a la base de dato
 
-  Future<void> create(String nombrepaciente, int edad,double peso,String email,String historialP) async {
+  Future<void> create(String nombrepaciente, int edad,double peso,String email,String historial) async {
     try{
       
       await FirebaseFirestore.instance.collection('pacientes').add({
-        'nombrepaciente': nombrepaciente, 'edad': edad,'historialp':historialP, 
+        'nombrepaciente': nombrepaciente, 'edad': edad,'historial':historial, 
         'peso': peso,'email':email, 'date':DateTime.now()});
     } catch(e) {
 
@@ -36,6 +36,16 @@ class PacienteService{
       return null;
     }
     
+  }
+  Future<void> update(Pacientes paciente) async {
+    try {
+      print(paciente.historial);
+      await FirebaseFirestore.instance
+          .doc(paciente.reference.path)
+          .update(paciente.toJson());
+    } catch (e) {
+      print(e);
+    }
   }
 
   

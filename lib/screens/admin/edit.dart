@@ -28,6 +28,7 @@ class _EditHistorial extends State<EditHistorial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('ADMIN'),),
       body: Padding(
           padding: const EdgeInsets.all(200.0),
           child: Center(
